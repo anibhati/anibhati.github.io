@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color:black;
+            color: white;
+        }
+        progress {
+            width: 350px;
+            height: 30px;
+            margin-bottom:20px;
+        }
+        #hiddenContent {
+            display: none;
+            color: blanchedalmond;
+        }
+        img {
+            max-width: 500px;
+            max-height: 300px;
+        }
+        .btn {
+            background-color: yellow;
+            color: purple;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border: 3px solid purple;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: orange;
+            color: white;
+            transform: scale(1.1);
+        }
+        .btn:disabled {
+            background-color: gray;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .btn1 {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            background-color:yellow;
+            color: purple;
+            font-size: 24px;  /* Make the button bigger */
+            font-weight: bold;
+            padding: 20px 40px; /* Bigger padding */
+            border: 1.5px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn1:hover {
+            background-color:orange;
+            transform: scale(1.1);
+        }
+
+        @keyframes jump {
+            0%   {transform: translate3d(0,0,0) scale3d(1,1,1);}
+            40%  {transform: translate3d(0,30%,0) scale3d(.7,1.5,1);}
+            100% {transform: translate3d(0,100%,0) scale3d(1.5,.7,1);}
+        }
+        .jump {
+            transform-origin: 50% 50%;
+            animation: jump .5s linear alternate infinite;
+        }
+
+        .grow {
+            animation: grow 2s;
+        }
+        @keyframes grow {
+            from { transform: scale(0); }
+            to { transform: scale(10); }
+        }
+        .spin {
+            animation: spin 1s infinite linear;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Loading...Click to see the GOAT!</h1>
+    <progress id="progressBar" max="100" value="0"></progress>
+    <br>
+    <button id="increaseButton" class="btn">Click Me!</button>
+
+    <div id="hiddenContent">
+        <h1>LEBROOOOOOOOOOOOOOOOOOON</h1>
+        <h2>LeGoat, LeKing, LeSunshine!</h2>
+        <img class="grow" src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1966.png&w=350&h=254">
+        <img class="jump" src="https://images.pond5.com/basketball-ball-rotating-black-background-footage-059738313_iconl.jpeg">
+        <img class="spin" src="https://i.ytimg.com/vi/y59-J0Q9v2o/mqdefault.jpg">
+
+        <a href="https://media3.giphy.com/media/r0vMIQG66Y6x5P5FYs/200w.gif?cid=6c09b952j76e9wbxh0itbx9oozvv62ba7h3k43jral6wvj33&ep=v1_gifs_search&rid=200w.gif&ct=g">
+            <button id="click" class="btn1">Click to see Lebron dunk!</button> 
+        </a>
+    </div>
+
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const button = document.getElementById('increaseButton');
+        const hiddenContent = document.getElementById('hiddenContent');
+
+        let progress = 0;  // Start progress at 0
+
+        button.addEventListener('click', function() {
+            let randomIncrease = Math.floor(Math.random() * 20) + 5; // Random increase between 5 and 20
+            progress += randomIncrease;
+            
+            // Ensure the progress bar does not exceed 100%
+            if (progress >= 100) {
+                progress = 100;
+                button.disabled = true;  // Disable button
+                hiddenContent.style.display = 'block';  // Immediately show the hidden content
+            }
+
+            progressBar.value = progress;  // Update progress bar value
+        });
+    </script>
+
+</body>
+</html>
